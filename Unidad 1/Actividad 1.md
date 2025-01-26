@@ -1,8 +1,8 @@
-#¿Qué es un computador digital moderno?
+# ¿Qué es un computador digital moderno?
 
 Un computador digital moderno es un dispositivo con la capacidad de procesar información en binario (Unos y ceros) para ejecutar tareas como cálculos matemáticos y operaciones complejas para el funcionamiento de diversas aplicaciones. Estos sistemas están compuestos además por hardware y software, que trabajan en conjunto para recibir, procesar, almacenar y emitir datos.
 
-#¿Cuáles son sus partes? 
+# ¿Cuáles son sus partes? 
 
 ## Disco duro
 Es un sistema de almacenamiento de datos que emplea un sistema de grabación magnética
