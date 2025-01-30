@@ -78,7 +78,98 @@ D=D+M
 @1
 M=D
 
-#11 Considera el siguiente programa
+# 11 Considera el siguiente programa:
+
+// i = 1000
+@1000
+D=A
+@i
+M=D
+(LOOP)
+// if (i == 0) goto CONT
+@i
+D=M
+@CONT
+D;JEQ
+// i = i - 1
+@i
+M=M-1
+// goto LOOP
+@LOOP
+0;JMP
+(CONT)
+
+Este programa guarda en D una cantidad, en este caso 1000, pone esta cantidad en la pocision 16 y luego compara si la cantidad es igual a 0, si la condicion no se cumple sigue bajando, y se le resta a este 1000
+un uno, luego baja a la condicion 0;JMP que lo envia a la posicion nombrada anteriormente en la ROM osea @4, repitienod asi el proceso hasta que la condicion D;JEQ se cumpla y asi pueda seguir en la linea @12 
+(Primera linea tras el bucle).
+
+La i esta almacenada en la memoria @16 de la RAM
+
+La exprecion i = 1000 esta almacenado en las posiciones @0, @1, @2 y @3 de la ROM ya que se divide en varias lineas de almacenamiento en lenguaje ensamblador 
+
+La primera instruccion del programa es guardar en A el valor de 1000, este valor guardado en la ROM en @0
+
+CONT contiene el bit que se ha desplazado o rotado fuera de un registro o posición de memoria
+LOOP representa la repeticion del codigo como us nombre lo indica
+
+La i es una posicion cualquiera de las posiciones posibles en la RAm, mientras que CONT es la posicion fuera del registro de memoria 
+
+# 12 Implementar en lenguaje ensamblador:
+
+"R4 = R1 + R2 + 69"
+
+@2
+D=M 
+@3 
+M=D 
+@2 
+D=M 
+@3 
+D=D+M 
+@69 
+D=D+A 
+@4 
+M=D 
+
+Donde @4 es R4, @2 es R2, @1 es R1
+
+# 13 Implementar en lenguaje ensamblador:
+
+" if R0 >= 0 then R1 = 1
+else R1 = –1
+
+(LOOP)
+goto LOOP "
+
+@0 
+D=M 
+@9 
+D;JLT 
+@1 
+D=A 
+@1 
+M=D 
+@0
+0;JMP
+@1 
+D=A 
+@2 
+D=D-A 
+@1 
+M=D 
+@0
+0;JMP
+
+# 14 Implementar en lenguaje ensamblador:
+
+"R4 = RAM[R1]"
+
+
+
+
+
+
+
 
 
 
