@@ -164,10 +164,169 @@ M=D
 
 "R4 = RAM[R1]"
 
+# 15 Implementa en ensamblador el siguiente problema. En la posición R0 está almacenada la dirección inicial de una región de 
+memoria. En la posición R1 está almacenado el tamaño de la región de memoria. Almacena un -1 en esa región de memoria.
 
+@R0          
+D=A          
+@R1         
+D=D+A       (fin de la región)
+(LOOP)       
+@R0        
+D=M        
+M=-1       
+@R0        
+D=M       
+D=D+1      
+@R0        
+M=D       
+@END       
+D;JLT      
+@END      
+0;JMP      
 
+# 16  (suma de los primeros diez números enteros)
 
+@0        
+M=0        
+@1          
+M=1         
+@2          
+M=2         
+@3         
+M=3         
+@4         
+M=4        
+@5        
+M=5        
+@6         
+M=6         
+@7         
+M=7        
+@8          
+M=8        
+@9         
+M=9        
+@10         
+M=0        
+@0          
+D=A         
+(LOOP)
+D=M          
+@10         
+M=M+D         
+@0           
+D=D+1        
+@10           
+D=M           
+@10          
+D=D+1        
+@20          
+D;JLT LOOP  
 
+# 17 
+
+# 18
+function void draw(int location) {
+	var int memAddress; 
+	let memAddress = 16384+location;
+	// column 0
+	do Memory.poke(memAddress, -64);
+	do Memory.poke(memAddress +32, -32656);
+	do Memory.poke(memAddress +64, 7180);
+	do Memory.poke(memAddress +96, 7172);
+	do Memory.poke(memAddress +128, -25594);
+	do Memory.poke(memAddress +160, -8190);
+	do Memory.poke(memAddress +192, 12291);
+	do Memory.poke(memAddress +224, 4097);
+	do Memory.poke(memAddress +256, 6145);
+	do Memory.poke(memAddress +288, 2049);
+	do Memory.poke(memAddress +320, 2049);
+	do Memory.poke(memAddress +352, 1025);
+	do Memory.poke(memAddress +384, 1025);
+	do Memory.poke(memAddress +416, 1025);
+	do Memory.poke(memAddress +448, 1025);
+	do Memory.poke(memAddress +480, 1025);
+	do Memory.poke(memAddress +512, 1025);
+	do Memory.poke(memAddress +544, 1026);
+	do Memory.poke(memAddress +576, 3074);
+	do Memory.poke(memAddress +608, 14340);
+	do Memory.poke(memAddress +640, -8180);
+	do Memory.poke(memAddress +672, 24);
+	do Memory.poke(memAddress +704, 48);
+	do Memory.poke(memAddress +736, 224);
+	do Memory.poke(memAddress +768, -256);
+	// column 1
+	do Memory.poke(memAddress +33, 7);
+	do Memory.poke(memAddress +65, 12);
+	do Memory.poke(memAddress +97, 24);
+	do Memory.poke(memAddress +129, 31);
+	do Memory.poke(memAddress +161, 48);
+	do Memory.poke(memAddress +225, 1022);
+	do Memory.poke(memAddress +257, 1539);
+	do Memory.poke(memAddress +289, 1025);
+	do Memory.poke(memAddress +321, 1161);
+	do Memory.poke(memAddress +353, 1137);
+	do Memory.poke(memAddress +385, 1137);
+	do Memory.poke(memAddress +417, 1027);
+	do Memory.poke(memAddress +449, 1419);
+	do Memory.poke(memAddress +481, 1501);
+	do Memory.poke(memAddress +513, 1655);
+	do Memory.poke(memAddress +545, 1536);
+	do Memory.poke(memAddress +577, 128);
+	do Memory.poke(memAddress +609, 192);
+	do Memory.poke(memAddress +641, 255);
+	do Memory.poke(memAddress +673, 96);
+	do Memory.poke(memAddress +705, 48);
+	do Memory.poke(memAddress +737, 14);
+	do Memory.poke(memAddress +769, 1);
+	return;
+
+#19
+1.  0100000000000000  // @0
+2.  1110110000010000  // D = D + A
+3.  0000000000010000  // @32
+4.  1110001100001000  // M = M + D
+5.  0110000000000000  // @0
+6.  1111110000010000  // D = D - 1
+7.  0000000000010011  // @35
+8.  1110001100000101  // M = M - D
+9.  0000000000010000  // @32
+10. 1111110000010000  // D = D - 1
+11. 0100000000000000  // @0
+12. 1110010011010000  // M = M + D
+13. 0000000000000100  // @4
+14. 1110001100000110  // M = M + D
+15. 0000000000010000  // @32
+16. 1111110010101000  // D = D - A
+17. 1110101010001000  // A = A + D
+18. 0000000000000100  // @4
+19. 1110101010000111  // A = A + D
+20. 0000000000010000  // @32
+21. 1111110000010000  // D = D - A
+22. 0110000000000000  // @0
+23. 1110010011010000  // M = M + D
+24. 0000000000000100  // @4
+25. 1110001100000011  // M = M + D
+26. 0000000000010000   // @32 
+27. 1111111000100000   // D = D - A 
+28. 1110111010001000   // A = A + D 
+29.  0000000000000100  // @4
+30.  1110101010001000  // A = A + D
+31.  0000000000010000  // @32
+32.  1111110000010000  // D = D - A
+33.  0110000000000000  // @0
+34.  1110010011010000  // M = M + D
+35.  0000000000000100  // @4
+36.  1110001100000011  // M = M + D
+37.  0000000000010000  // @32
+38.  1111111000100000  // D = D - A
+39.  1110111010001000  // A = A + D
+
+El programa parece estar realizando una serie de operaciones sobre registros y posiciones de memoria, específicamente:
+Inicializa ciertos valores en registros y posiciones de memoria
+Realiza operaciones de suma y resta en bucles
+Actualiza valores en direcciones específicas de RAM (como las direcciones 0, 4, y 32) utilizando los cálculos realizados
 
 
 
