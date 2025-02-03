@@ -164,27 +164,25 @@ M=D
 
 "R4 = RAM[R1]"
 
+@R1
+D=M
+@R4 
+M=D 
+
 # 15 Implementa en ensamblador el siguiente problema. En la posición R0 está almacenada la dirección inicial de una región de 
 memoria. En la posición R1 está almacenado el tamaño de la región de memoria. Almacena un -1 en esa región de memoria.
 
-@R0          
-D=A          
-@R1         
-D=D+A       (fin de la región)
-(LOOP)       
-@R0        
-D=M        
-M=-1       
-@R0        
-D=M       
-D=D+1      
-@R0        
-M=D       
-@END       
-D;JLT      
-@END      
-0;JMP      
-
+@R1
+D=M 
+@R0 
+A=M 
+M=-1 
+@R0 
+M=M+1 
+D=D-1 
+@2
+D;JGT 
+    
 # 16  (suma de los primeros diez números enteros)
 
 @0        
@@ -224,7 +222,21 @@ D=D+1
 @20          
 D;JLT LOOP  
 
+R// El programa hace que la variable "sum" agregue uno a uno los valores dentro del array.
+R// Desde R16 hasta donde indique el rango del array, a causa de los primeros 15 espacios reservados
+R// La direccion base seia la primera declarada, en este caso R16
+R// Teniendo en cuenta lo anterior seria R17
+
 # 17 
+
+"if ( (D - 7) == 0) goto a la instrucción en ROM[69]"
+
+@69
+M=A 
+@7
+D=D-A
+@69
+D;JEQ
 
 # 18
 function void draw(int location) {
