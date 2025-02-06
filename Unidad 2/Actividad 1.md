@@ -74,14 +74,14 @@ Teclado: Al leer esta posición de memoria, se puede determinar qué tecla se ha
 2. Si se detecta una tecla presionada, el bloque LOOP_FILL recorre la memoria de la pantalla y la llena de píxeles blancos.
 3. El programa se ejecuta en un bucle infinito, actualizando constantemente la pantalla según el estado del teclado.
 4. -1 es 1111 1111 1111 1111 en binario.
-✔ En la pantalla de Hack, cada 1 significa un píxel blanco.
-✔ Al escribir -1, encendemos los 16 píxeles de esa celda de memoria.
-✔ Para llenar toda la pantalla, se debe escribir -1 en todas las direcciones de memoria de la pantalla.
+5. En la pantalla de Hack cada 1 significa un píxel blanco.
+6. Al escribir -1, encendemos los 16 píxeles de esa celda de memoria.
+7. Para llenar toda la pantalla, se debe escribir -1 en todas las direcciones de memoria de la pantalla.
 
 # Investiga el funcionamiento del programa con el simulador.
 Al utilizarlo en el simulador el programa sigue reproduciendose de forma constante en un loop que comprueba constantemente si el usuario esta oprimiendo una tecla o no:
 ![image](https://github.com/user-attachments/assets/deeb6318-2424-4602-a992-9c14fa96b80e)
-Cuando el usuario presiona una tecla, osea el programa lee un numero diferente a 0 en 24576 (Direccion del teclado) este comenzara a pintar pixel por pixel la pantalla:
+Cuando el usuario presiona una tecla, osea el programa lee un numero diferente a 0 en la direccion 24576 (Direccion del teclado) este comenzara a pintar pixel por pixel la pantalla:
 ![image](https://github.com/user-attachments/assets/b566b41c-f2b1-4422-a9a5-e4a044cf6835)
 
 
