@@ -8,8 +8,19 @@ Vas a implementar y simular una modificación al reto 20 de la unidad anterior. 
 
 
     // Letra d
-     
+    // Comparar si D es igual a 'd' (ASCII 100)
+    @100         // Cargar el valor ASCII de 'd'
+    D=D-A        // D = D - 100
+    @DRAW        // Si D == 0, saltar a la etiqueta DRAW
+    D;JEQ        // Salta si D es igual a 0
     
+    // Fin del programa si no se presiona 'd'
+    // End
+    (END)
+    @END
+    0;JMP
+
+    (DRAW)
     // Constants
     @SCREEN         // Base address of the screen
     D=A
@@ -783,7 +794,4 @@ Vas a implementar y simular una modificación al reto 20 de la unidad anterior. 
     @
 
     
-    // End
-    (END)
-      @END
-      0;JMP
+   
