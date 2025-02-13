@@ -1,27 +1,62 @@
 # Reto 3 
 Vas a implementar y simular una modificación al reto 20 de la unidad anterior. Si se presiona la letra “d” muestras la imagen que diseñaste en el reto 18. Si no se presiona ninguna tecla, borrarás la imagen.
 
-    // LIMPIAR 
-    @LIMPIAR
-    D=M
-    D;JNE
+    // Esperar a que se presione una tecla
+    (LOOP)
+        @KBD
+        D=M          // Leer el teclado
+        @CLEAR
+        D;JEQ        // Si no hay tecla presionada, ir a CLEAR
+
+    @100
+    D=D-A        // Comparar con 'd' (ASCII 100)
+    @DRAW
+    D;JEQ        // Si es 'd', ir a DRAW
+
+    @LOOP
+    0;JMP        // Si es otra tecla, seguir esperando
 
 
-    // Letra d
-    // Comparar si D es igual a 'd' (ASCII 100)
-    @100         // Cargar el valor ASCII de 'd'
-    D=D-A        // D = D - 100
-    @DRAW        // Si D == 0, saltar a la etiqueta DRAW
-    D;JEQ        // Salta si D es igual a 0
+    // ------------------------------
+    // Borrar pantalla cuando no se presiona 'd'
+    // ------------------------------
+    (CLEAR)
+        @SCREEN
+        D=A
+        @MEM_ADDRESS
+        M=D          // Dirección inicial de la memoria de video
     
-    // Fin del programa si no se presiona 'd'
-    // End
-    (END)
-    @END
-    0;JMP
+    (CLEAR_LOOP)
+        @MEM_ADDRESS
+        A=M
+        M=0          // Escribir 0 para borrar
 
+    @MEM_ADDRESS
+    D=M
+    @1
+    D=D+A
+    @MEM_ADDRESS
+    M=D          // Avanzar al siguiente píxel
+
+    @24576       // Límite de la pantalla (16384 + 8192)
+    D=M
+    @CLEAR_LOOP
+    D;JLT        // Repetir hasta borrar toda la pantalla
+
+    @LOOP
+    0;JMP        // Volver a esperar entrada
+
+    // ------------------------------
+    // Dibujar en la pantalla cuando 'd' está presionada
+    // ------------------------------
     (DRAW)
-    // Constants
+        @SCREEN
+        D=A
+        @MEM_ADDRESS
+        M=D          // Dirección inicial de la pantalla
+    
+    (DRAW_LOOP)
+       // Constants 
     @SCREEN         // Base address of the screen
     D=A
     @SCREEN_BASE
@@ -75,7 +110,7 @@ Vas a implementar y simular una modificación al reto 20 de la unidad anterior. 
       A=M
       M=D
     
-      // memAddress + 64
+    // memAddress + 64
       @MEM_ADDRESS
       D=M
       @64
@@ -789,9 +824,18 @@ Vas a implementar y simular una modificación al reto 20 de la unidad anterior. 
       @R1
       A=M
       M=D
-      
-    (LIMPIAR)
-    @
-
     
-   
+      @KBD
+        D=M          // Leer el teclado
+        @100
+        D=D-A        // Comparar con 'd' (ASCII 100)
+        @DRAW
+        D;JEQ        // Si es 'd', ir a DRAW
+
+    @CLEAR_LOOP
+    0;JMP 
+
+    // Repetir el bucle
+    @DRAW_LOOP
+    0;JMP
+
