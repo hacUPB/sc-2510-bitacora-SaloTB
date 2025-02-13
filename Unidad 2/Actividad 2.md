@@ -1,5 +1,21 @@
 # Correccion y analicis punto 20
-    // Constants
+       // Esperar a que se presione la tecla 'd'
+    (LOOP)
+        @KBD
+        D=M          // Leer el teclado
+        @100
+        D=D-A        // Comparar con 'd' (ASCII 100)
+        @DRAW
+        D;JEQ        // Si es 'd', ir a DRAW
+    
+        @LOOP
+        0;JMP        // Si no es 'd', seguir esperando
+    
+    // ------------------------------
+    // Dibujar en la pantalla
+    // ------------------------------
+    (DRAW)
+    // Constants 
     @SCREEN         // Base address of the screen
     D=A
     @SCREEN_BASE
@@ -53,7 +69,7 @@
       A=M
       M=D
     
-      // memAddress + 64
+    // memAddress + 64
       @MEM_ADDRESS
       D=M
       @64
