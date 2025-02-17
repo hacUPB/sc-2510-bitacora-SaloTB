@@ -120,5 +120,70 @@ En ensamblador ambos bucles terminan implementándose de manera casi identica, L
 
 ## Reto 5 
 
-   
+    "int a = 10;
+    int *p;
+    p = &a;
+    *p = 20;"
+
+    @10
+    D=A
+    @16 //a
+    M=D      // a = 10
+
+    @16 //a
+    D=A
+    @p
+    M=D      // p = &a (p almacena la dirección de a)
+
+    @17 //p
+    A=M      // Desreferenciamos p, ahora A tiene la dirección de a
+    M=20     // *p = 20 (cambiamos el valor de a a 20)
+
+## 6 y 7
+
+    "int a = 10;
+    int b = 5;
+    int *p;
+    p = &a;
+    b = *p;"
+
+    // Inicializar a = 10
+    @10
+    D=A
+    @a
+    M=D
+
+    // Inicializar b = 5
+    @5
+    D=A
+    @b
+    M=D
+
+    // Guardar la dirección de a en p
+    @a
+    D=A
+    @p
+    M=D
+
+    // Leer el valor de a a través de p y asignarlo a b
+    @p
+    A=M      // A ahora tiene la dirección de a
+    D=M      // D ahora tiene el valor de a (10)
+    @b
+    M=D      // Asignamos ese valor a b
+
+
+## 8 
+- ¿Qué hace esto `int *pvar;`?
+  "pvar" es una variable que almacenará la dirección de un entero
+- ¿Qué hace esto `pvar = var;`?
+  Si "var" es un entero, esta asignación es incorrecta porque pvar espera una dirección de memoria. pvar = &var; (Forma correcta)
+- ¿Qué hace esto `var2 = *pvar`?
+   El puntero va a contener la dirección de memoria de una variable entera. *pvar significa "el contenido de la dirección almacenada en pvar". Si pvar apunta a var, entonces "*pvar" devuelve el valor de "var".
+   "var2" ahora contiene el mismo valor que "var".
+- ¿Qué hace esto `pvar = &var3`?
+  "&var3" obtiene la dirección de "var3". Ahora pvar ya no apunta a var sino a "var3"
+  
+## 9
+
    
