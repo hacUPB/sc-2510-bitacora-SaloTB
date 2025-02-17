@@ -1,5 +1,5 @@
 # Retos
-## 1
+## Reto 1
     @0
     D=A
     @sum
@@ -44,45 +44,81 @@
 7. La dirección de una variable es el número de la RAM donde se guarda su valor
 8. El contenido de una variable es el valor almacenado en su dirección de memoria 
 
-## 2
-    @0
-    D=A
-    @sum
-    M=D          // sum = 0
+## Reto 2
+        @0
+        D=A
+        @sum
+        M=D          // sum = 0
     
-    @1
-    D=A
-    @i
-    M=D          // i = 1
+        @1
+        D=A
+        @i
+        M=D          // i = 1 (Inicialización antes del bucle)
     
-    (LOOP) //Bucle
+    (FOR_COND)
         @i
         D=M
         @100
         D=D-A
         @END
-        D;JGE      // Si i > 100, salir del bucle
+        D;JGT      // Si i > 100, salir del bucle
     
-        // sum = sum + i
+        // sum += i
         @i
         D=M
         @sum
-        M=D+M
+        M=M+D
     
-        // i = i + 1
+        // i++ (actualización al final del bucle)
         @i
         M=M+1
     
-        @LOOP
-        0;JMP      // Repetir el bucle
+        @FOR_COND
+        0;JMP      // Volver a comprobar la condición
     
     (END)
         @END
         0;JMP      // Loop infinito para detener el programa
+        
+En ensamblador ambos bucles terminan implementándose de manera casi identica, La diferencia es que "while" es más flexible porque no obliga a que la inicialización e incremento estén en lugares fijos; mientras que 
+"for" sigue una estructura más clara, asegurando que la inicialización, condición y actualización estén organizadas de manera predecible.
 
-En lenguaje ensamblado a diferencia del lengauje de alto nivel el bucle es el mismo. La diferencia de "while"y "for"en lenguaje de alto nivel es que "for" ya sabe cuantas veces va a realizar el loop, mientras que "While"
-Tan solo realiza esta accion hasta que un requisito se cumpla. enlenguaje nesamblador no se puede determinar un valor o una cantidad de ciclos dependiendo de estos, por lo que en si mismo es su propiotipo de ciclo, en el 
-que las condiciones se compruebas constantemente para determinar si el ciclo deberia de terminar o no dependiendo de estas mismas. Un procesomas largo, pero a mi parecer mucho mas cercano a los loops creados por "While"
-que tambien se basa en las condiciones que en "for" quien ya tiene una condicion inicial.
+## Reto 3
 
-## 3
+## Reto 4
+
+    "int a = 10;
+    int *p;
+    p = &a;
+    *p = 20;"
+    
+1. ¿Cómo se declara un puntero en C++?
+   Se usa el "*"
+2. ¿Cómo se define un puntero en C++?
+   Asignando la dirección de otra variable
+   
+        @a
+        D=A
+        @p
+        M=D   // p = &a
+
+3. ¿Cómo se almacena en C++ la dirección de memoria de una variable?
+   Usando "&"
+
+       @a
+        D=A
+        @p // p almacena la dirección de a
+        M=D
+4. ¿Cómo se escribe el contenido de la variable a la que apunta un puntero?
+    usando *p
+
+        @p
+        A=M    // A ahora apunta a la dirección de a
+        M=20   // *p = 20
+
+-- Los punteros en ensamblador son simplemente direcciones de memoria almacenadas en registros o variables. Para modificar una variable a través de un puntero --
+
+## Reto 5 
+
+   
+   
