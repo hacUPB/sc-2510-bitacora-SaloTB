@@ -44,7 +44,7 @@
 7. La dirección de una variable es el número de la RAM donde se guarda su valor
 8. El contenido de una variable es el valor almacenado en su dirección de memoria 
 
-## Reto 2
+## Reto 2 y 3
         @0
         D=A
         @sum
@@ -82,8 +82,6 @@
         
 En ensamblador ambos bucles terminan implementándose de manera casi identica, La diferencia es que "while" es más flexible porque no obliga a que la inicialización e incremento estén en lugares fijos; mientras que 
 "for" sigue una estructura más clara, asegurando que la inicialización, condición y actualización estén organizadas de manera predecible.
-
-## Reto 3
 
 ## Reto 4
 
