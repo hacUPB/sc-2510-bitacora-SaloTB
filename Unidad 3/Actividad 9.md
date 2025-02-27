@@ -1,6 +1,8 @@
 # Actividad 9 
 ## ¿Qué sucede cuando presionas la tecla “f”?
-Cuando presionas la tecla 'f', el programa elimina el último objeto almacenado en el heap
+Cuando presionas la tecla 'f', el programa elimina la ultima bolita de "happy memory" osea el último objeto almacenado en el heap
+![image](https://github.com/user-attachments/assets/2197a601-60b3-4554-ba05-d38e89baae8c)
+
     
     if(!heapObjects.empty()) {   //  Verifica si hay elementos en el vector
         delete heapObjects.back(); // libera la memoria del ultimo objeto en el heap
