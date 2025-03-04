@@ -184,4 +184,24 @@ En ensamblador ambos bucles terminan implementándose de manera casi identica, L
   
 ## 9
 
+    (suma) // Implementa suma
+       @a  
+       D=M
+       @b
+       D=D+M
+       @var
+       M=D
+       D=M
+       @suma
+       M=D
+       @main 
+       D=A
+       @mainadr
+       M=D 
+       @10
+       D=A 
+       @mainadr // Suma 10 a mainadr y salta a esa direccion
+       A=D+M
+       0;JMP
+
    
