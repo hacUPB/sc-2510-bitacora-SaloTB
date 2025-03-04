@@ -144,5 +144,24 @@
 
     
 ![image](https://github.com/user-attachments/assets/563e1961-3c06-4648-95e4-4eb1a4fc8685)
+https://www.canva.com/design/DAGgz_KljXc/Krhg17El5jim8dvdZtJ1Xg/edit?utm_content=DAGgz_KljXc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton 
 
-## Falta analicis y pegar el video 
+## Analicis
+### Stack
+Almacena variables locales y llamadas de funciones (son temporales); En este caso almacena:
+
+Variables locales dentro de las funciones, como "x", "y" en los bucles anidados de la generación de esferas
+Parámetros de funciones como "mouseX", "mouseY" en convertMouseToRay()
+Variables temporales dentro de mousePressed(), como rayStart y rayEnd
+
+a pila tiene un tamaño limitado y las variables almacenadas en ella se destruyen automáticamente al salir del alcance de la función
+
+### Heap
+El heap se usa para asignación dinámica de memoria, lo que permite crear objetos en tiempo de ejecucion que persisten mas alla del alcance de la función en la que fueron creados. En otras palabras, es como un archivador donde se guardan datos que se quieren usar en cualquier momento:
+
+Las posiciones de las esferas (std::vector<glm::vec3> spherePositions) se guardan aqui porque se usa un vector, que es como una caja que puede crecer o reducirse
+
+### Global/Estatica
+Estos son los  datos que siempre estan disponibles:
+
+Si una variable se define fuera de "setup()" o "draw()" (U otras funciones), siempre pse podra acceder a ella en cualquier parte del código
