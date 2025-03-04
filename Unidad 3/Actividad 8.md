@@ -32,4 +32,10 @@
         createHeapObject();
     
         return 0;
-    }
+     }
+        
+## Tipos de Memorias
+Stack: Es rápido, automático, desaparece cuando la función termina y se usa para variables temporales dentro de funciones
+Heap: Es manual, existe hasta que se borres con "delete" y sirve para datos grandes o que deben durar mas tiempo
+Global: siempre esta disponible, pero puede ocupar memoria innecesaria; y se usa para configuraciones o datos compartidos en todo el programa
+    
