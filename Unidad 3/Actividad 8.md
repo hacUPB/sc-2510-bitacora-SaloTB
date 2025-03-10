@@ -12,7 +12,7 @@
     }
     
     void createHeapObject() {
-        //  Heap: Se asigna memoria dinámicamente con `new`
+        //  Heap: Se asigna memoria con `new`
         int* heapObject = new int(99);
         std::cout << "Objeto en Heap creado: " << *heapObject << std::endl;
     
@@ -25,7 +25,7 @@
         globalObjects.push_back(7);
         std::cout << "Objeto en Memoria Global: " << globalObjects[0] << std::endl;
     
-        //  Stack: Se crea y se destruye automáticamente al salir de la función
+        //  Stack: Se crea y se destruye automaticamente al salir de la funcion
         createStackObject();
     
         //  Heap: Se crea y hay que eliminarlo manualmente
