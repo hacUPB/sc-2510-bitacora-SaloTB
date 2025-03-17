@@ -68,7 +68,7 @@ En este codigo se puede evidenciar como los nodos en este caso estan conectados 
 
 En este codigo se puede evienciar como new Node(x, y) reserva memoria para el nuevo nodo en el heap; el puntero "tail->next" conecta el nuevo nodo al final y la variable "size" ayuda a llevar un control del numero de nodos. Por otro lado para al eliminacion se utiliza el codigo #2 utilizado anteriormente donde se puede ver como se utiliza un bucle while para recorrer cada nodo y asi eliminarlo correctamente.
 
-## Listaqs enlasadas y arreglos 
+## Listas enlasadas y arreglos 
 La mayor diferencia es que en el arreglo es necesario el mover los elementos lo que puede causar una demora o una ineficiencia a la hora de correr el programa, mientras que con la lista enlazada mo hay que mover los elementos y simplemente se les ajustan los punteros tanto del nodo anterior como del siguienmte nodo, agilisando el proceso.
 
 ## Fugas de memoria y destructor 
@@ -78,3 +78,5 @@ El destructor (~LinkedList()) es clave para evitar fugas de memoria porque elimi
     LinkedList::~LinkedList() {
         clear();  // Llama a `clear()` para liberar memoria
     }
+
+    
