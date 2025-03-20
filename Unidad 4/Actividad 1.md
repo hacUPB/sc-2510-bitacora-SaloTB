@@ -79,4 +79,17 @@ El destructor (~LinkedList()) es clave para evitar fugas de memoria porque elimi
         clear();  // Llama a `clear()` para liberar memoria
     }
 
+## C++ y C#
+En C++ es el programador quien tiene la repsonsabilidad de trabajar con la memoria y por ende sus posibles fugas, en cambio en C# se tiene el (GC) o (Garbage collector) quien se encarga de eliminar todo objeto que ya no posea una referencia. Cone sto en cuenta se puede decir que trabajar con C# es mucho mas facil y eficiente para un programador no muy experimentado, mientras C++ conyeva mas responsabilidad a la hora de optimizar el programa, sin emabrgo, esto tambien significa que el programador tiene la capacidad de manipular y ordenar este manejo de memoria como mejor le parezca, y al no estar automatizado evita los errores de eliminacion que podrian presentarse en C#. Otra cosa es que poder acceder directamente a la memoria en C++ da muchas ventajas de manejo de la misma sin emabrgo, tambien posibilita muchos errores como el acceso a memoria invalida y fugas de memoria, lo que hace su tratamiento mas complejo y minucioso. 
+
+## Optimizacion de artegenerativo y Estructura de datos personalizada
+Para garantizar que sea eficiente abria que tener varios puntos en cosideracion, entre ellos primero:
+Cada vez que se crea un nodo con "new" este tiene que ser eliminado tan pronto ya no sea necesario, para esto usaria un destructor en la lista enlazada que los vaya eliminando con respecto sea necesario
+
+     delete current; // se libera la memoria del nodo actual
+     clear(); // se llama a clear para eliminar todos los nodos correctamente
+
+Tambien se debe de tener en cuenta que al eliminar un nodo se debe de actualizar tail (Puntero) correctamente para evitar llamar a referencias de memoria eliminadas. Y finalmente verificaria que no se estubieran recorreindo listas enlazadas de forma inecesaria que pudiera realentizar el programa
+
+## Prueba del programa
     
