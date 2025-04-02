@@ -184,5 +184,91 @@ En ensamblador ambos bucles terminan implementándose de manera casi identica, L
   
 ## 9
 
+### C++
+    #include <iostream>
+    
+    int suma(int a, int b) { // suma dos eteros y devuelve el resultado
+       int var = a + b;
+       return var;
+    }
+    
+    
+    int main() { // llama dos valores especificos y almacena el valor en c
+       int c = suma(6, 9);
+       std::cout << "El valor de c es: " << c << std::endl;
+       return 0;
+    }
 
-;-;
+### Ensamblador
+    // Definir la funciom suma
+    (suma)
+        // Obtener el valor de a (ARG 0)
+        @ARG
+        D=M      // D = a
+        
+        // Obtener el valor de b (ARG 1)
+        @ARG
+        A=A+1
+        D=D+M   // D = a + b
+        
+        // Devolver el resultado
+        @SP
+        A=M
+        M=D      // Guardar resultado en la pila
+        
+        // Ajustar SP
+        @SP
+        M=M+1
+        
+        // Retornar
+        @LCL
+        D=M     // Guardar direccion de retorno
+        @5
+        A=D-A
+        D=M     // D = direccion de retorno
+        @RET
+        M=D     
+        
+        // Restaurar segmentos
+        @LCL
+        D=M
+        @SP
+        M=D+1
+        
+        @RET
+        A=M
+    
+    // Funsion principal main
+    (main)
+        // Pasar argumentos 6 y 9 a la pila
+        @6
+        D=A
+        @SP
+        A=M
+        M=D
+        @SP
+        M=M+1
+    
+        @9
+        D=A
+        @SP
+        A=M
+        M=D
+        @SP
+        M=M+1
+    
+        // Llamar a suma
+        @suma
+        0;JMP
+    
+        // Guardar el resultado en c (en la pila)
+        @SP
+        A=M-1
+        D=M  // D = resultado de suma
+        
+        // Fin del programa
+    
+        (END)
+        @END
+        0;JMP
+
