@@ -200,44 +200,7 @@ En ensamblador ambos bucles terminan implementándose de manera casi identica, L
     }
 
 ### Ensamblador
-    // Definir la funciom suma
-    (suma)
-        // Obtener el valor de a (ARG 0)
-        @ARG
-        D=M      // D = a
-        
-        // Obtener el valor de b (ARG 1)
-        @ARG
-        A=A+1
-        D=D+M   // D = a + b
-        
-        // Devolver el resultado
-        @SP
-        A=M
-        M=D      // Guardar resultado en la pila
-        
-        // Ajustar SP
-        @SP
-        M=M+1
-        
-        // Retornar
-        @LCL
-        D=M     // Guardar direccion de retorno
-        @5
-        A=D-A
-        D=M     // D = direccion de retorno
-        @RET
-        M=D     
-        
-        // Restaurar segmentos
-        @LCL
-        D=M
-        @SP
-        M=D+1
-        
-        @RET
-        A=M
-    
+   
     // Funsion principal main
     (main)
         // Pasar argumentos 6 y 9 a la pila
@@ -262,6 +225,7 @@ En ensamblador ambos bucles terminan implementándose de manera casi identica, L
         0;JMP
     
         // Guardar el resultado en c (en la pila)
+        (Resultado)
         @SP
         A=M-1
         D=M  // D = resultado de suma
@@ -271,4 +235,42 @@ En ensamblador ambos bucles terminan implementándose de manera casi identica, L
         (END)
         @END
         0;JMP
-
+        
+     // Definir la funciom suma
+        (suma)
+            // Obtener el valor de a (ARG 0)
+            @ARG
+            D=M      // D = a
+            
+            // Obtener el valor de b (ARG 1)
+            @ARG
+            A=A+1
+            D=D+M   // D = a + b
+            
+            // Devolver el resultado
+            @SP
+            A=M
+            M=D      // Guardar resultado en la pila
+            
+            // Ajustar SP
+            @SP
+            M=M+1
+            
+            // Retornar
+            @LCL
+            D=M     // Guardar direccion de retorno
+            @5
+            A=D-A
+            D=M     // D = direccion de retorno
+            @RET
+            M=D     
+            
+            // Restaurar segmentos
+            @LCL
+            D=M
+            @SP
+            M=D+1
+            
+            @RET
+            A=M
+            @Resultado
