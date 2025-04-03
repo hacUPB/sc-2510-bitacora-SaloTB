@@ -224,8 +224,16 @@ En ensamblador ambos bucles terminan implementándose de manera casi identica, L
     D=D+M      
     @suma
     M=D       
-    
-    (FIN)
-    @FIN
-    0;JMP  
+
+    @suma // Condicion para saltar a Main
+    D=A
+    @suma
+    D=D-M
+    @main 
+    D;JEQ  
+
+    (main) // Se muestra 
+    @END
+    0;JMP 
+      
     
