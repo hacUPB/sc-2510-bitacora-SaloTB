@@ -200,77 +200,32 @@ En ensamblador ambos bucles terminan implementándose de manera casi identica, L
     }
 
 ### Ensamblador
-   
-    // Funsion principal main
-    (main)
-        // Pasar argumentos 6 y 9 a la pila
-        @6
-        D=A
-        @SP
-        A=M
-        M=D
-        @SP
-        M=M+1
+
+    Valor a 
+    @6
+    D=A
+    @a
+    M=D
     
-        @9
-        D=A
-        @SP
-        A=M
-        M=D
-        @SP
-        M=M+1
+     Valor b
+    @9
+    D=A
+    @b
+    M=D
+
+    Funcion Suma
+    @SUMA
+    0;JMP 
     
-        // Llamar a suma
-        @suma
-        0;JMP
+    (SUMA)
+    @a
+    D=M        
+    @b
+    D=D+M      
+    @suma
+    M=D       
     
-        // Guardar el resultado en c (en la pila)
-        (Resultado)
-        @SP
-        A=M-1
-        D=M  // D = resultado de suma
-        
-        // Fin del programa
+    (FIN)
+    @FIN
+    0;JMP  
     
-        (END)
-        @END
-        0;JMP
-        
-     // Definir la funciom suma
-        (suma)
-            // Obtener el valor de a (ARG 0)
-            @ARG
-            D=M      // D = a
-            
-            // Obtener el valor de b (ARG 1)
-            @ARG
-            A=A+1
-            D=D+M   // D = a + b
-            
-            // Devolver el resultado
-            @SP
-            A=M
-            M=D      // Guardar resultado en la pila
-            
-            // Ajustar SP
-            @SP
-            M=M+1
-            
-            // Retornar
-            @LCL
-            D=M     // Guardar direccion de retorno
-            @5
-            A=D-A
-            D=M     // D = direccion de retorno
-            @RET
-            M=D     
-            
-            // Restaurar segmentos
-            @LCL
-            D=M
-            @SP
-            M=D+1
-            
-            @RET
-            A=M
-            @Resultado
