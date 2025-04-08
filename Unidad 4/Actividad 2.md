@@ -71,10 +71,12 @@ display(): Dibuja los circulos en la pantalla
     }
 
 
-## Pruebas
-
 ## Preguntas del stack
-1. 
+1. Para la creacion manual de memoria se utiliza un heap que permite crear un nuevo nodo con new y eliminarlo manualmente con delte, lo que permite tener un control total de cuando utilizar y eliminar esta meoria pero al mismo tiempo deja a posibilidad el cometer un error que genere una perdida de rendimeinto del programa
+2. Es importante proque si no se elimina este ndoo seguira ocupando espacio lo que afectara graveemnete el rendimeinto dle prograna
+3. Las principales diferencias radican en que el STL (std::stack) es mas limitado pero da ventajas que le manual impone como su facil uso y le ehhco de que no utiliza punteros
+4. El stack sigue una estructura LIFO (Last In, First Out) loq ue significa que le primer elemento que se agrega es el primero en salir, lo que le permite actuar como si se hiciera un Crt+z, eliminando la ultima accion realizada.
+5. Para modificar clases de dats mas compleos se me ocurre crear una clase con las acracteristicas que se quieran crear y esta msima podria ser llamada y eliminada con mas libertad durante el codigo
 
 ## Analicis codigo de la cola
 ### Enqueque
@@ -128,10 +130,13 @@ Elimina elementos
         }
     }
 
-## Pruebas
-
 ## Preguntas del queque
-
+1. Al utilizar enqueue se crea un nuevo nodo con new, el cual se ubica al final de la cola (rear) y al usar dequeue, se elimina el nodo al frente (front) con delete. Este proceso es manual al igual que en el stack se deve crear y eliminar por cuenta propia
+2. La principal diferencia y loq ue lo hace ligeramente mas dificil de manejar es que en el enqueuqe se manejan dos punteros, a diferencia dle stack donde solo se maneja uno. Estsos punteros siendo front y rear, quienes deben ser catualizados correctamente durante el codigo
+3. esta diseñado para procesar elementos en el orden en elq ue llegaron loq ue hace que sea util para sosas como listas o turnos, siempre teneindo en cuenta el primero creado y no el ultimo en cola.
+4. Un queue circular funcionaria como un bucle con un array de tamño fijo lo que hace que vuelva al incio, esto ayudnaod al uso de memoria y e procesamiento rapido
+5. Podrian aber problemas como fugas de memoria o intentar accerder a memoria liberada.
+   
 ## Diferencia
 ![image](https://github.com/user-attachments/assets/571a8a05-6797-4442-9c07-80fccdc9f69d)
 
