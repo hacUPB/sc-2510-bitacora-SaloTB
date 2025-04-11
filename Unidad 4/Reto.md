@@ -75,7 +75,7 @@
     
     // Agrega un nuevo nodo al final de la lista (cola)
     void ofApp::enqueue(float x, float y) {
-        Node* newNode = new Node(x, y); // Creamos un nuevo nodo dinámicamente
+        Node* newNode = new Node(x, y); // se crea un nuevo nodo 
     
         if (rear == nullptr) {
             // Si la cola está vacía
@@ -107,6 +107,9 @@
         }
     }
 
-  El programa crea circulos de difernetes colores sobre un fondo negro que bajan lentamente, si se oprime la tecla a aparecera un nuevo cirulo
-  y si se oprime la tecla d desaparecera el ultimo circulo creado
+  El programa crea circulos que cambian constantemente de color sobre un fondo negro, si se oprime la tecla "a" aparecera un nuevo cirulo
+  y si se oprime la tecla "d" desaparecera el primer circulo creado. (Se uitiza queque, cola)
+
+  ![image](https://github.com/user-attachments/assets/d38a8a24-909b-4c43-a0d3-4109f4850fb4)
+
 
