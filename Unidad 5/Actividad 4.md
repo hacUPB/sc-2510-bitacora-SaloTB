@@ -1,6 +1,6 @@
 # Reto
 
-## Primer codigo 
+## Primer codigo - prueba 1
 OffApp.cpp
 
         // Particle.h
@@ -86,7 +86,7 @@ Offapp.h
         void draw();
     };
 
-## Segundo Codigo 
+## Segundo Codigo - prueba dos
     OffApp.Cpp
     
     // ofApp.h
@@ -137,7 +137,7 @@ Offapp.h
     };
 
 
-## Tercer codigo 
+## Tercer codigo - prueba final
 OffApp.Cpp
 
     // Particle.h
