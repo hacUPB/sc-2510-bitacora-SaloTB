@@ -60,18 +60,12 @@ el tamaño del objeto habla de su estructura interna pues el "sizeof(Particle)" 
 se tiene el uso de dos "float" y por ende se ocupan 8 Bytes
 
 ## Analisis de diferencias
-Cuandos e define 
+LAs variables estaticas son comartidas por todas las instancias de las clases, no pertenecen a un objeto individual y se almacenan en una zona especial de la memoria, generalmente en el segment de datos estatios
+mientras que las variables dinamicas son punteros que apuntan a memoria asignada en tiempo de ejcucion, la memoria no forma parte directa del objeto en cambio se almacena en el heap y se accede mediante punteros.
 
-    class StaticData {
-    public:
-        static int s;
-        int a;
-    };
+en resumen: Las variables estaticas no aumentan el tamaño de cada objeto y existen una sola vez en memoria, sin importar cuantos objetos se creen.
+En cambio las variables dinamicas: Solo agregan el espacio del puntero al objeto y los datos que apuntan estan fuera del objeto, en el heap.
 
-    int StaticData::s = 0;
-
-"s" es estatica, es decir: solo existe una copia para toda la clase y no ocupa espacio dentro de cada objeto. Por lo que noa parece
-en el tamaño de las instancias
 
 
 
