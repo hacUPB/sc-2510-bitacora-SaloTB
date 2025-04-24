@@ -74,5 +74,112 @@ En C++, los punteros a métodos miembro son diferentes de punteros a funciones n
     
     void (MyClass::*methodPtr)() = &MyClass::myMethod;
 
+## Experimentos
 
-FALTAN COMPROBACIONES PROPIAS
+### Metodos virtuales
+Primero para comprobar la eficiencia de los metodos virtuales cree un codigo sin estos mismos, para asi poder compararlo en rendimiento con el mismo codigo pero ahora aplicando estos metodos:
+### 1 sin emtodos virtuales
+        #include <iostream>
+        #include <chrono>
+        
+        class NonVirtual {
+        public:
+            void doSomething() {
+                // Trabajo ficticio
+                int x = 0;
+                for (int i = 0; i < 1000; i++) x += i;
+            }
+        };
+        
+        int main() {
+            NonVirtual obj;
+            auto start = std::chrono::high_resolution_clock::now();
+        
+            for (int i = 0; i < 1000000; i++) {
+                obj.doSomething();  // Llamada directa
+            }
+        
+            auto end = std::chrono::high_resolution_clock::now();
+            std::cout << "Tiempo sin virtual: "
+                      << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
+                      << " ms\n";
+        
+            std::cout << "Tamaño del objeto: " << sizeof(obj) << " bytes\n";
+        
+            return 0;
+        }
+
+### 2 con metodos virtuales
+
+    #include <iostream>
+    #include <chrono>
+    
+    class Virtual {
+    public:
+        virtual void doSomething() {
+            int x = 0;
+            for (int i = 0; i < 1000; i++) x += i;
+        }
+    };
+    
+    int main() {
+        Virtual obj;
+        auto start = std::chrono::high_resolution_clock::now();
+    
+        for (int i = 0; i < 1000000; i++) {
+            obj.doSomething();  // Llamada virtual (resuelta en tiempo de ejecución)
+        }
+    
+        auto end = std::chrono::high_resolution_clock::now();
+        std::cout << "Tiempo con virtual: "
+                  << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
+                  << " ms\n";
+    
+        std::cout << "Tamaño del objeto: " << sizeof(obj) << " bytes\n";
+    
+        return 0;
+    }
+    
+Al probarlo y comprobarlo co el depurador se puede ver lo siguiente: 
+
+
+### Uso de punteros y referencias
+
+A partir del codigo dado cree este codigo para comparar Puntero a funcion vs referencia a metodo miembro
+
+        #include <iostream>
+        #include <functional>
+        
+        class FunctionPointerExample {
+        public:
+            // Puntero a función tradicional (no tiene estado)
+            void (*funcPtr)();
+        
+            // Usamos std::function para referencias con contexto
+            std::function<void()> methodRef;
+        
+            static void staticFunction() {
+                std::cout << "[Puntero] Static function called" << std::endl;
+            }
+        
+            void nonStaticMethod() {
+                std::cout << "[Referencia] Non-static method called" << std::endl;
+            }
+        
+            void assignFunction() {
+                funcPtr = staticFunction;
+                methodRef = std::bind(&FunctionPointerExample::nonStaticMethod, this);
+            }
+        
+            void callBoth() {
+                if (funcPtr) funcPtr();
+                if (methodRef) methodRef();
+            }
+        };
+        
+        int main() {
+            FunctionPointerExample obj;
+            obj.assignFunction();
+            obj.callBoth();
+            return 0;
+        }
