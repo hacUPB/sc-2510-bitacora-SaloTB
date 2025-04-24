@@ -60,6 +60,60 @@ la subestructura de la base este en la misma posicion que si fuera un objeto bas
 
 ### Experimentos 
 
+#### 1
+    #include <iostream>
+    
+    class Base {
+    public:
+        int baseVar;
+    };
+    
+    class Derived : public Base {
+    public:
+        int derivedVar;
+    };
+    
+    int main() {
+        Derived d;
+    
+        std::cout << "Dirección del objeto d:        " << &d << std::endl;
+        std::cout << "Dirección de d.baseVar:        " << &(d.baseVar) << std::endl;
+        std::cout << "Dirección de d.derivedVar:     " << &(d.derivedVar) << std::endl;
+    
+        return 0;
+    }
+Con este experimento se evidencia que un objeto de clase derivada contiene primero los datos de la clase base, y luego los suyos.
+
+#### 2
+        #include <iostream>
+        
+        class Base {
+        public:
+            int baseVar;
+        };
+        
+        class Mid : public Base {
+        public:
+            int midVar;
+        };
+        
+        class Derived : public Mid {
+        public:
+            int derivedVar;
+        };
+        
+        int main() {
+            Derived d;
+        
+            std::cout << "Dirección del objeto d:         " << &d << std::endl;
+            std::cout << "Dirección de d.baseVar:         " << &(d.baseVar) << std::endl;
+            std::cout << "Dirección de d.midVar:          " << &(d.midVar) << std::endl;
+            std::cout << "Dirección de d.derivedVar:      " << &(d.derivedVar) << std::endl;
+        
+            return 0;
+        }
+En este experimento se puede evidenciar que incluso con varios niveles de herencia los atributos se ordenan de manera jearquica, en este caso primero los de base, luego los de Mid y por ultimo los derived. 
+
 ## Polimorfismo y Vtables en detalle
 
 ### ¿Cómo utiliza el programa las vtables para el polimorfismo? ¿Cuál es el impacto en el rendimiento?
@@ -69,6 +123,27 @@ para que finalmente el metodo se busca en la vtable y se llame a la funcion corr
 Con rspecto al rendimiento si no se usa el polimorfismo, osea se resuelve desde la compilacion y no la ejecucion esto puede llegar a ser mas rapido. 
 
 ### Experimentacion
+Utilizando el codigo dado, realice los siguientesanalicis en el depurador: 
+
+    class Animal {
+    public:
+        virtual void makeSound() {
+            std::cout << "Some generic sound" << std::endl;
+        }
+    };
+    class Dog : public Animal {
+    public:
+        void makeSound() override {
+            std::cout << "Bark" << std::endl;
+        }
+    };
+    class Cat : public Animal {
+    public:
+        void makeSound() override {
+            std::cout << "Meow" << std::endl;
+        }
+    };
+
 
 #### ¿Cómo se implementan internamente el encapsulamiento, la herencia y el polimorfismo?
 
