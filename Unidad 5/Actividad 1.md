@@ -66,8 +66,79 @@ mientras que las variables dinamicas son punteros que apuntan a memoria asignada
 en resumen: Las variables estaticas no aumentan el tamaño de cada objeto y existen una sola vez en memoria, sin importar cuantos objetos se creen.
 En cambio las variables dinamicas: Solo agregan el espacio del puntero al objeto y los datos que apuntan estan fuera del objeto, en el heap.
 
+### Clases y comparacion de tamaños
+    #include <iostream>
+    
+    // Clase con un solo atributo entero
+    class Simple {
+    public:
+        int a;
+    };
+    
+    // Clase con tres atributos enteros y dos metodos vacíos
+    class Complex {
+    public:
+        int a, b, c;
+    
+        void method1() {}  // Los metodos no suman al sizeof directamente
+        void method2() {}
+    };
+    
+    int main() {
+        std::cout << "Tamaño de Simple: " << sizeof(Simple) << " bytes" << std::endl;
+        std::cout << "Tamaño de Complex: " << sizeof(Complex) << " bytes" << std::endl;
+    
+        return 0;
+    }
 
 
+### Clases con variable estaticas
+
+    #include <iostream>
+    
+    // Clase con un dato estático y uno normal
+    class StaticData {
+    public:
+        static int s;  // Variable compartida entre todas las instancias
+        int a;
+    };
+    
+    int StaticData::s = 0;
+    
+    int main() {
+        StaticData obj;
+    
+        std::cout << "Tamaño de StaticData: " << sizeof(StaticData) << " bytes" << std::endl;
+    
+        return 0;
+    }
+    
+### Clases con punteros dinamicos
+
+    #include <iostream>
+    
+    class DynamicData {
+    public:
+        int* ptr;
+    
+        // Reservar memoria dinámicamente
+        DynamicData() {
+            ptr = new int[10];  // Reserva 10 enteros dinámicamente
+        }
+    
+        // Liberar la memoria al destruir el objeto
+        ~DynamicData() {
+            delete[] ptr;
+        }
+    };
+    
+    int main() {
+        DynamicData obj;
+    
+        std::cout << "Tamaño de DynamicData: " << sizeof(DynamicData) << " bytes" << std::endl;
+    
+        return 0;
+    }
 
 
 
