@@ -58,7 +58,7 @@ garantizar que si se accede a un objeto de tipo Derived a traves de un puntero a
 Por loq ue isguiendo esta logica si se genran mas niveles de herencia estos se organizaran de forma jerarquica. Esta jerarquia siendo importante pues C++ necesita garantizar que si se usa un puntero o referencia a una clase base, 
 la subestructura de la base este en la misma posicion que si fuera un objeto base.
 
-### Experimentos 
+### Experimento
 
 #### 1
     #include <iostream>
@@ -82,37 +82,23 @@ la subestructura de la base este en la misma posicion que si fuera un objeto bas
     
         return 0;
     }
-Con este experimento se evidencia que un objeto de clase derivada contiene primero los datos de la clase base, y luego los suyos.
 
-#### 2
-        #include <iostream>
-        
-        class Base {
-        public:
-            int baseVar;
-        };
-        
-        class Mid : public Base {
-        public:
-            int midVar;
-        };
-        
-        class Derived : public Mid {
-        public:
-            int derivedVar;
-        };
-        
-        int main() {
-            Derived d;
-        
-            std::cout << "Dirección del objeto d:         " << &d << std::endl;
-            std::cout << "Dirección de d.baseVar:         " << &(d.baseVar) << std::endl;
-            std::cout << "Dirección de d.midVar:          " << &(d.midVar) << std::endl;
-            std::cout << "Dirección de d.derivedVar:      " << &(d.derivedVar) << std::endl;
-        
-            return 0;
-        }
-En este experimento se puede evidenciar que incluso con varios niveles de herencia los atributos se ordenan de manera jearquica, en este caso primero los de base, luego los de Mid y por ultimo los derived. 
+EN este experimento se puede notar que: 
+
+1. Derived hereda de Base, y por tanto, tiene todos los miembros de Base mas los suyos propios.
+2. Derived contiene dos int: baseVar (de Base) y derivedVar (propio)
+3. Se imprime la direccion en memoria del objeto completo (d) y la direccion de cada atributo individual
+
+
+Se obtienen lso resultados: 
+
+    Dirección del objeto d:        0x7ffeee30a010
+    Dirección de d.baseVar:        0x7ffeee30a010
+    Dirección de d.derivedVar:     0x7ffeee30a014
+
+Donde se puede ver que: el objeto Derived comienza con los miembros de Base y luego 4 bytes luego que es lo que ocupa un int esta derivedVar
+
+Con este experimento se puede evidenciar que un objeto de clase derivada contiene primero los datos de la clase base, y luego los suyos, ordenandose de forma jerarquica.
 
 ## Polimorfismo y Vtables en detalle
 
@@ -123,7 +109,6 @@ para que finalmente el metodo se busca en la vtable y se llame a la funcion corr
 Con rspecto al rendimiento si no se usa el polimorfismo, osea se resuelve desde la compilacion y no la ejecucion esto puede llegar a ser mas rapido. 
 
 ### Experimentacion
-Utilizando el codigo dado, realice los siguientesanalicis en el depurador: 
 
     class Animal {
     public:
@@ -144,7 +129,16 @@ Utilizando el codigo dado, realice los siguientesanalicis en el depurador:
         }
     };
 
+Este codigo trabaja con una jerarquia de clases con un metodo virtual.
 
-#### ¿Cómo se implementan internamente el encapsulamiento, la herencia y el polimorfismo?
+Algunas caracteristicas son: 
 
+1. Aunque a1 y a2 son punteros a Animal, llaman al método correcto según el tipo real del objeto apuntado
+2. se sigue la logica de una virtual table: "" a (Animal*) → accede a vptr → busca funcion → llama a Dog::makeSound ""
+3. no se usa Vtable para los sonidos genericos y se resuelve en tiempo de compilacion 
+
+        Animal* a = new Dog();
+        a->makeSound();  // Metodo virtual
+   
+Ne esta parte en especifico la llamada al Makesaund no se resuleve en tiempo de compilacion lo que implica utilizar una vtable y por ende un puntero "fantasma" que aumentaria le tamaño del objeto unos cuantos bytes, lo que poria afectar al rendimiento.
 
