@@ -140,7 +140,7 @@ OffApp.cpp
         for (int i = 0; i < 100; ++i) {
             ofVec2f pos(ofRandomWidth(), ofRandomHeight());
             ofColor col(ofRandom(255), ofRandom(255), ofRandom(255));
-            particles.push_back(std::make_unique<CircleParticle>(pos, col)); // Polimorfismo
+            particles.push_back(std::make_unique<CircleParticle>(pos, col)); // Polimorfismo, vector de punteros inteligentes 
         }
     }
     
