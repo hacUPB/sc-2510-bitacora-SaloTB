@@ -156,4 +156,6 @@ OffApp.cpp
         }
     }
 
+Intenete poner otras clases con mas figuras, pero la biblioteca de openfreamworks me ponia demasiados problemas al intentar determinr su tamaño, asi que decidi dejarlo solo conc circulos, pero tecnicamente puedes seguir agregando particulas de otras formas como sus propias clases y lalmandolas como p-> Draw y p-> update para que se ejecuten
+
 ![image](https://github.com/user-attachments/assets/002abaaf-33e7-4ab3-b5c9-63c6753d39ad)
