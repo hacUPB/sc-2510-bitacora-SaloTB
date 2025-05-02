@@ -48,11 +48,6 @@ gracias a esto el codigo que usa animales ya no tiene que preocuparse por como s
     a->speak(); // Dice: Guau!
     delete a;
 
-### En el segundo punto
-
-
-
-
 ## Patron de observer
 
 ### lo que entiendo
@@ -125,12 +120,6 @@ La clase que genera los eventos que hereda del sujeto:
         button.click(); // Dispara el evento
         return 0;
     }
-
-### En el segundo punto
-
-
-
-
 
 ## Patron de estado
 
@@ -208,4 +197,3 @@ Main (lo que se ejecuta)
         return 0;
     }
 
-### En el segundo punto
