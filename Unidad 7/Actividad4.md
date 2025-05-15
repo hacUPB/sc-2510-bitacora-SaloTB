@@ -152,4 +152,4 @@ Al fragment solo le hice un pequeño cambio, haciendo que parpadee cada tanto (N
 
 ![image](https://github.com/user-attachments/assets/39838598-14c4-4fe4-b0ce-0d713f98424e)
 
-
+(Estos son dos intentos diferentes en diferentes etapas del codigo, una es cuando solo estaba experimentando con el cpp y la otra cuando experimente con los shaders)
