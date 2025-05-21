@@ -6,7 +6,7 @@
     
     //--------------------------------------------------------------
     void ofApp::setup() {
-        // Carga el shader según el tipo de renderer
+        // Carga el shader 
         if (ofIsGLProgrammableRenderer()) {
             shader.load("shadersGL3/shader");
         }
